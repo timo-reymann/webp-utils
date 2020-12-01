@@ -19,18 +19,18 @@ func TestLoad(t *testing.T) {
 			},
 		},
 		{
-			file:          "syntactic_invalid.json",
-			expectedError: "error parsing JSON bytes: invalid character '\\n' in string literal",
+			file:           "syntactic_invalid.json",
+			expectedError:  "error parsing JSON bytes: invalid character '\\n' in string literal",
 			expectedConfig: nil,
 		},
 		{
-			file:          "basic_invalid.json",
-			expectedError: "/: {\"quiet\":true} \"o\" value is required",
+			file:           "basic_invalid.json",
+			expectedError:  "/: {\"quiet\":true} \"o\" value is required",
 			expectedConfig: nil,
 		},
 		{
-			file:          "non_existent.json",
-			expectedError: "open testdata/non_existent.json: no such file or directory",
+			file:           "non_existent.json",
+			expectedError:  "open testdata/non_existent.json: no such file or directory",
 			expectedConfig: nil,
 		},
 	}
@@ -44,7 +44,7 @@ func TestLoad(t *testing.T) {
 			t.Errorf("Error matches dont match expected %s, but got %v", testCase.expectedError, err)
 		}
 
-		if ! reflect.DeepEqual(testCase.expectedConfig, config) {
+		if !reflect.DeepEqual(testCase.expectedConfig, config) {
 			t.Error("Configs dont match")
 		}
 	}

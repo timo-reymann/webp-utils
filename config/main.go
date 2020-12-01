@@ -15,7 +15,7 @@ func Load(path string) (map[string]interface{}, error) {
 	}
 
 	// Validate configuration
-	errs := json.Validate(content,"cwebp")
+	errs := json.Validate(content, "cwebp")
 	for _, err := range errs {
 		return nil, errors.New(err)
 	}

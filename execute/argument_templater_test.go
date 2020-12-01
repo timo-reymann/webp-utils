@@ -11,7 +11,7 @@ func TestArgumentTemplater_IsExtraParameter(t *testing.T) {
 		},
 	)
 
-	if ! templater.IsExtraParameter("extra_value") {
+	if !templater.IsExtraParameter("extra_value") {
 		t.Error("Expected extra paramater to be detected")
 	}
 

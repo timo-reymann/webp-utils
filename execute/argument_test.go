@@ -51,13 +51,13 @@ func TestArgument_BuildArg(t *testing.T) {
 		{
 			argumentName:  "value-flag",
 			argumentValue: "value",
-			expectedArgs:  []string{"-value-flag","value"},
+			expectedArgs:  []string{"-value-flag", "value"},
 			expectedError: "",
 		},
 		{
 			argumentName:  "templated-flag",
 			argumentValue: "{{ .important_value }}",
-			expectedArgs:  []string{"-templated-flag","foo"},
+			expectedArgs:  []string{"-templated-flag", "foo"},
 			expectedError: "",
 		},
 	}
@@ -67,9 +67,7 @@ func TestArgument_BuildArg(t *testing.T) {
 		templater, _ := newArgumentTemplater(
 			map[string]interface{}{
 				"important_value": "foo",
-			}, map[string]interface{}{
-
-			},
+			}, map[string]interface{}{},
 		)
 		args, err := arg.BuildArg(templater)
 
