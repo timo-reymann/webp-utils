@@ -1,0 +1,3 @@
+{
+  "o": "{{ .source_file_name }}.webp"
+}
