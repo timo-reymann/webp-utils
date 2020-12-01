@@ -7,6 +7,8 @@ import (
 	"github.com/qri-io/jsonschema"
 )
 
+// Schemas contains all available schemas, bundled with packer, the key is the file name with extension
+// e. g. cwebp.json
 var Schemas = make(map[string]jsonschema.Schema, 0)
 
 func parseSchema() error {

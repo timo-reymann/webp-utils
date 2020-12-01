@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Argument represents a high level command line argument to webp tools
 type Argument struct {
 	Name  string
 	Value interface{}
@@ -39,7 +40,7 @@ func (a *Argument) processValueTemplate(templater *ArgumentTemplater) (string, e
 	return templater.Apply(strVal)
 }
 
-// BuildArg creates a array containg the parameter name and optional the templated processed value
+// BuildArg creates a array containing the parameter name and optional the templated processed value
 func (a *Argument) BuildArg(templater *ArgumentTemplater) ([]string, error) {
 	arg := []string{
 		"-" + a.Name,
@@ -49,9 +50,10 @@ func (a *Argument) BuildArg(templater *ArgumentTemplater) ([]string, error) {
 	if a.IsFlag() {
 		if a.IsFlagEnabled() {
 			return arg, nil
-		} else { // omit
-			return []string{}, nil
 		}
+
+		// omit
+		return []string{}, nil
 	}
 
 	// Try to process parameter value template

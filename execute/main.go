@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// BuildCommandsForFileList generates a list with command wrappers for cli execution
 func BuildCommandsForFileList(executable string, fileNames []string, configuration map[string]interface{}) ([]Command, error) {
 	executablePath, err := getExecutablePath(executable)
 	if err != nil {
