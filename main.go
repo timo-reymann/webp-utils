@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/timo-reymann/webp-utils/pkg/cmd"
+	"github.com/timo-reymann/webp-utils/cmd"
 )
 
 func main() {
