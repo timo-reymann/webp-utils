@@ -1,0 +1,17 @@
+version: '2.1'
+
+executors:
+  go:
+    docker:
+      - image: circleci/golang:1.15
+
+jobs:
+  test:
+    executor: go
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command: gotestsum --junitfile unit-tests.xml
+      - store_test_results:
+          path: unit-tests.xml
