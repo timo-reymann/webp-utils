@@ -9,7 +9,8 @@ import (
 
 func init() {
 	cpwebCmd := &cobra.Command{
-		Use: "cwebp",
+		Use:   "cwebp",
+		Short: "Call cwebp",
 		Run: func(cmd *cobra.Command, args []string) {
 			fileGlob, _ := cmd.Flags().GetString("file-glob")
 			files, err := util.FileGlobMatches(fileGlob)
