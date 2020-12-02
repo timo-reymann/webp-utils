@@ -23,15 +23,17 @@ jobs:
 
   build_docker:
     executor: docker
+    environment:
+      IMAGE: timoreymann/webp-utils
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Build
+          command: docker build . -t "${IMAGE}"
+      - run:
+          name: Push
           command: |
-            IMAGE="timoreymann/webp-utils"
-            docker build . -t "${IMAGE}"
-
             # Push only on tags
             if [[ ! -z "$CIRCLE_TAG" ]]
             then
@@ -39,6 +41,8 @@ jobs:
 
               docker tag "${IMAGE}:${CIRCLE_TAG}"
               docker push "${IMAGE}:${CIRCLE_TAG}"
+            else
+              echo "No tag, skipping push"
             fi
 
 workflows:
