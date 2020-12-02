@@ -45,3 +45,16 @@ docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp
     you can also create a file named differently and use the `--config`-Flag 
 3. Run the command and specify a file glob for the files to be processed, like this:
     `webp-utils cwebp --file-glob '*.png'`
+
+## Configuration file
+Each json key value pair represents an argument and its value, that can be templated using go templates.
+
+You can use any other key or the following builtins:
+
+| Name              | Content                               |
+| :---------------- | :------------------------------------ |
+| source_file       | Source file path with extension       |
+| source_file_name  | Source file name without extension    |
+
+You can find all schemas inside [pkg/schema](./pkg/schema), you can also set up your ide/editor to give you
+autocomplete based on the json schema.
