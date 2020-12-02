@@ -6,14 +6,11 @@ webp-utils
 
 Wrapper around [webp cli tools](https://developers.google.com/speed/webp/docs/using) to allow easier batch processing. 
 
-
 # Currently supported webp cli tools:
 - cwebp
 
-
 # Technical notes
 For easier development a json schema is used as base for validation and paramter passing.
-
 
 # Install
 
@@ -25,7 +22,6 @@ To use the tools with a binary you will also need to install the webp cli tools 
 Just make sure they are placed inside your PATH or add them accordingly.
 
 More information about installation can be found on [developers.google.com](https://developers.google.com/speed/webp/docs/using). 
-
 
 ### Get binary using go cli
 If you already have go setup you can simply run a `go get`:
@@ -39,9 +35,13 @@ Navigate to the [latest release](https://github.com/timo-reymann/webp-utils/rele
 If you want to use docker:
 
 ```bash
-docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp-utils cwebp --config /etc/webp-utils/default.json --file-glob *.png
+docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp-utils \
+    cwebp --config /etc/webp-utils/default.json --file-glob '*.png'
 ```
 
-
 # Usage
-tbd
+1. **OPTIONAL:** Setup schema for your IDE, for available schemas look into [pkg/schema](./pkg/schema)
+2. Create a file named `config.json`, containing all parameters for the command you want to execute, 
+    you can also create a file named differently and use the `--config`-Flag 
+3. Run the command and specify a file glob for the files to be processed, like this:
+    `webp-utils cwebp --file-glob '*.png'`
