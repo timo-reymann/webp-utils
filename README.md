@@ -19,6 +19,14 @@ For easier development a json schema is used as base for validation and paramter
 
 ## Binary
 
+### IMPORTANT: webcp tools must be installed!
+To use the tools with a binary you will also need to install the webp cli tools yourself.
+
+Just make sure they are placed inside your PATH or add them accordingly.
+
+More information about installation can be found on [developers.google.com](https://developers.google.com/speed/webp/docs/using). 
+
+
 ### Get binary using go cli
 If you already have go setup you can simply run a `go get`:
 ```bash
