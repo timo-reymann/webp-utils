@@ -1,0 +1,6 @@
+{
+  "o": "{{ .source_file_name }}.webp",
+  "lossless": true,
+  "metadata": "none",
+  "q": 80
+}

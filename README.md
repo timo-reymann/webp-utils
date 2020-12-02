@@ -39,5 +39,5 @@ Navigate to the [latest release](https://github.com/timo-reymann/webp-utils/rele
 If you want to use docker:
 
 ```bash
-docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp # args go here
+docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp-utils cwebp --config /etc/webp-utils/default.json --file-glob *.png
 ```

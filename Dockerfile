@@ -13,7 +13,12 @@ RUN wget  -qO- https://storage.googleapis.com/downloads.webmproject.org/releases
     ls -la
 
 FROM ubuntu:20.10
-WORKDIR /workspace
+
+WORKDIR  /etc/webp-utils
+COPY .docker/default_configuration.json default.json
+
 COPY --from=builder /build/webp-utils /usr/local/bin/webp-utils
 COPY --from=webp_downloader /download/bin/cwebp /usr/local/bin/cwebp
+
+WORKDIR /workspace
 ENTRYPOINT ["/usr/local/bin/webp-utils"]
