@@ -4,6 +4,9 @@ executors:
   go:
     docker:
       - image: circleci/golang:1.15
+  docker:
+    docker:
+      - image: docker:19-git
 
 jobs:
   test:
@@ -18,7 +21,20 @@ jobs:
       - store_artifacts:
           path: unit-tests.xml
 
+  build_docker:
+    executor: docker
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build
+          command: |
+            docker build . -t timoreymann/webp-utils:latest
+
+
 workflows:
   build:
     jobs:
       - test
+      - build_docker
