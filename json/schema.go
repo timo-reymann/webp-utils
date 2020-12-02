@@ -34,12 +34,15 @@ func parseSchema() error {
 // Validate the fileContent as raw json and return all human readable error messages
 func Validate(fileContent []byte, schemaName string) []string {
 	ctx := context.Background()
-	schema := Schemas[schemaName+".json"]
+	schema, ok := Schemas[schemaName+".json"]
+
+	if !ok {
+		return []string{"No Schema named " + schemaName}
+	}
+
 	keyErrors, err := schema.ValidateBytes(ctx, fileContent)
 	if err != nil {
-		return []string{
-			err.Error(),
-		}
+		return []string{err.Error()}
 	}
 
 	errors := make([]string, len(keyErrors))
