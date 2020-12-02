@@ -49,14 +49,14 @@ jobs:
                 --tag $CIRCLE_TAG \
                 --name "Release $CIRCLE_TAG"
 
-            for f in dist/*
+            for filename in dist/*
             do
                 github-release upload \
                   --replace \
                   --user $CIRCLE_PROJECT_USERNAME \
                   --repo $CIRCLE_PROJECT_REPONAME \
                   --tag $CIRCLE_TAG \
-                  --name $filename \
+                  --name "$(basename "$filename")" \
                   --file $filename
             done
 
@@ -100,7 +100,7 @@ workflows:
       - github_release:
           filters:
             branches:
-              only: []
+              ignore: /.*/
             tags:
               only: /.*/
           requires:
