@@ -14,15 +14,22 @@ type ArgumentTemplater struct {
 }
 
 func newArgumentTemplater(context map[string]interface{}, extraParameters map[string]interface{}) (*ArgumentTemplater, error) {
-	// Enhance context
 	excludedArgs := make([]string, 0)
+	templateContext := make(map[string]interface{})
+
+	// Copy context
+	for key, val := range context {
+		templateContext[key] = val
+	}
+
+	// Copy extra parameters
 	for key, val := range extraParameters {
-		context[key] = val
+		templateContext[key] = val
 		excludedArgs = append(excludedArgs, key)
 	}
 
 	return &ArgumentTemplater{
-		context:            context,
+		context:            templateContext,
 		extraParameterKeys: excludedArgs,
 	}, nil
 }

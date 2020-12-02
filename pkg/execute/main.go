@@ -27,7 +27,7 @@ func BuildCommandsForFileList(executable string, fileNames []string, configurati
 		// Create args for file
 		args := make([]Argument, 0)
 		for key, value := range configuration {
-			args = append(args, *newArgument(key, value))
+			args = append(args, newArgument(key, value))
 		}
 
 		// Bundle and create command structure

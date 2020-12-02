@@ -10,8 +10,8 @@ type Argument struct {
 	Value interface{}
 }
 
-func newArgument(name string, value interface{}) *Argument {
-	return &Argument{
+func newArgument(name string, value interface{}) Argument {
+	return Argument{
 		Name:  name,
 		Value: value,
 	}
