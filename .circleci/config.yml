@@ -15,3 +15,8 @@ jobs:
           command: gotestsum --junitfile unit-tests.xml
       - store_test_results:
           path: unit-tests.xml
+
+workflows:
+  build:
+    jobs:
+      - test
