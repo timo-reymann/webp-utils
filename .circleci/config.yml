@@ -29,8 +29,17 @@ jobs:
       - run:
           name: Build
           command: |
-            docker build . -t timoreymann/webp-utils:latest
-      # TODO Push
+            IMAGE="timoreymann/webp-utils"
+            docker build . -t "${IMAGE}"
+
+            # Push only on tags
+            if [[ ! -z "$CIRCLE_TAG" ]]
+            then
+              docker push "${IMAGE}:latest"
+
+              docker tag "${IMAGE}:${CIRCLE_TAG}"
+              docker push "${IMAGE}:${CIRCLE_TAG}"
+            fi
 
 workflows:
   build:
