@@ -1,0 +1,52 @@
+version: '2.1'
+
+executors:
+  go:
+    docker:
+      - image: circleci/golang:1.15
+  docker:
+    docker:
+      - image: docker:19-git
+
+jobs:
+  test:
+    executor: go
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command: gotestsum --junitfile unit-tests.xml
+      - store_test_results:
+          path: unit-tests.xml
+      - store_artifacts:
+          path: unit-tests.xml
+
+  build_docker:
+    executor: docker
+    environment:
+      IMAGE: timoreymann/webp-utils
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build
+          command: docker build . -t "${IMAGE}"
+      - run:
+          name: Push
+          command: |
+            # Push only on tags
+            if [[ ! -z "$CIRCLE_TAG" ]]
+            then
+              docker push "${IMAGE}:latest"
+
+              docker tag "${IMAGE}:${CIRCLE_TAG}"
+              docker push "${IMAGE}:${CIRCLE_TAG}"
+            else
+              echo "No tag, skipping push"
+            fi
+
+workflows:
+  build:
+    jobs:
+      - test
+      - build_docker
