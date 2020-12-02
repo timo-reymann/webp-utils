@@ -1,0 +1,5 @@
+examples/
+*.png
+*.webp
+.idea/
+.circleci/

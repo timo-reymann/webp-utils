@@ -14,5 +14,6 @@ RUN wget  -qO- https://storage.googleapis.com/downloads.webmproject.org/releases
 
 FROM ubuntu:20.10
 WORKDIR /workspace
-COPY --from=builder /build/webp-utils /usr/local/bin/webp-utils
-COPY --from=webp_downloader /download/bin/cwebp /usr/local/bin/cwebp
+COPY --chown=${user}:${user} --from=builder /build/webp-utils /usr/local/bin/webp-utils
+COPY --chown=${user}:${user} --from=webp_downloader /download/bin/cwebp /usr/local/bin/cwebp
+ENTRYPOINT ["/usr/local/bin/webp-utils"]

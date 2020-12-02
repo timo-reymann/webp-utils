@@ -7,3 +7,23 @@ webp-utils
 > WIP: Wrapper around webp cli tools to allow easier batch processing. 
 >
 > For easier development a json schema is used as base for validation and paramter passing
+
+# Usage
+
+## Binary
+
+### Get binary using go cli
+If you already have go setup you can simply run a `go get`:
+```bash
+go get -u github.com/timo-reymann/webp-utils
+```
+
+### Get binary from GitHub release
+tbd
+
+### Docker
+If you want to use docker:
+
+```bash
+docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp # args go here
+```
