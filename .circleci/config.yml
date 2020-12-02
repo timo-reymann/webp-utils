@@ -1,9 +1,11 @@
 version: '2.1'
 
+
 job_defaults: &job_defaults
   filters:
     tags:
       only: /.*/
+
 
 executors:
   go:
@@ -12,6 +14,7 @@ executors:
   docker:
     docker:
       - image: docker:19-git
+
 
 jobs:
   test:
@@ -25,6 +28,38 @@ jobs:
           path: unit-tests.xml
       - store_artifacts:
           path: unit-tests.xml
+
+  github_release:
+    executor: go
+    steps:
+      - checkout
+      - run:
+          name: Build binaries
+          command: make build
+      - run:
+          name: Create github release
+          command: |
+            go get github.com/github-release/github-release
+
+            git config user.name $CIRCLE_PROJECT_USERNAME
+
+            github-release release \
+                --user $CIRCLE_PROJECT_USERNAME \
+                --repo $CIRCLE_PROJECT_REPONAME \
+                --tag $CIRCLE_TAG \
+                --name "Release $CIRCLE_TAG"
+
+            for f in dist/*
+            do
+                github-release upload \
+                  --replace \
+                  --user $CIRCLE_PROJECT_USERNAME \
+                  --repo $CIRCLE_PROJECT_REPONAME \
+                  --tag $CIRCLE_TAG \
+                  --name $filename \
+                  --file $filename
+            done
+
 
   build_docker:
     executor: docker
@@ -51,11 +86,22 @@ jobs:
               echo "No tag, skipping push"
             fi
 
+
 workflows:
   version: 2
   build:
     jobs:
       - test:
           <<: *job_defaults
+
       - build_docker:
           <<: *job_defaults
+
+      - github_release:
+          filters:
+            branches:
+              only: []
+            tags:
+              only: /.*/
+          requires:
+            - test

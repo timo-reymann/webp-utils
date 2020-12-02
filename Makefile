@@ -14,3 +14,18 @@ test-coverage-report: ## Run test and display coverage report in browser
 	@go test -covermode=count -coverprofile=/tmp/count.out -v ./...
 	@go tool cover -html=/tmp/count.out
 
+create-dist: ## Create dist folder if not already existent
+	@mkdir -p dist/
+
+build-linux: ## Build for linux (amd64, arm64)
+	@GOOS=linux GOARCH=amd64 go build -o dist/webp-utils-linux-amd64
+	@GOOS=linux GOARCH=arm64 go build -o dist/webp-utils-linux-arm64
+
+build-windows: ## Build for windows (amd64)
+	@GOOS=windows GOARCH=amd64 go build -o dist/webp-utils-windows-amd64.exe
+
+build-darwin: ## Build for macOS (amd64, arm64)
+	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-amd64
+	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-arm64
+
+build: create-dist build-linux build-darwin build-windows ## Build for all platform
