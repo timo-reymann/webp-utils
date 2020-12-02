@@ -25,13 +25,12 @@ jobs:
     executor: docker
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - setup_remote_docker
       - run:
           name: Build
           command: |
             docker build . -t timoreymann/webp-utils:latest
-
+      # TODO Push
 
 workflows:
   build:
