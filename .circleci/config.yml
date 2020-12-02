@@ -80,7 +80,7 @@ jobs:
             then
               docker push "${IMAGE}:latest"
 
-              docker tag "${IMAGE}:${CIRCLE_TAG}"
+              docker tag "${IMAGE}:latest" "${IMAGE}:${CIRCLE_TAG}"
               docker push "${IMAGE}:${CIRCLE_TAG}"
             else
               echo "No tag, skipping push"
