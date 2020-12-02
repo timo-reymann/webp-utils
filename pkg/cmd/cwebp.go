@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/timo-reymann/webp-utils/config"
-	"github.com/timo-reymann/webp-utils/execute"
-	"github.com/timo-reymann/webp-utils/util"
+	"github.com/timo-reymann/webp-utils/pkg/config"
+	"github.com/timo-reymann/webp-utils/pkg/execute"
+	"github.com/timo-reymann/webp-utils/pkg/util"
 )
 
 func init() {

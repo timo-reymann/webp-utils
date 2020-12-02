@@ -75,19 +75,17 @@ func TestBatch(t *testing.T) {
 
 	commands := []Command{
 		{
-			Binary: "echo",
-			Args: []Argument{
-			},
+			Binary:       "echo",
+			Args:         []Argument{},
 			Filename:     "",
 			ArgTemplater: templater,
-				},
+		},
 		{
-			Binary: "echo",
-			Args: []Argument{
-			},
+			Binary:       "echo",
+			Args:         []Argument{},
 			Filename:     "",
 			ArgTemplater: templater,
-				},
+		},
 	}
 	_, err := Batch(commands)
 	if err != nil {

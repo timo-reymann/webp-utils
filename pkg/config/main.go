@@ -2,7 +2,7 @@ package config
 
 import (
 	"errors"
-	"github.com/timo-reymann/webp-utils/json"
+	"github.com/timo-reymann/webp-utils/pkg/json"
 	"io/ioutil"
 )
 
