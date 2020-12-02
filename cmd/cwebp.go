@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/timo-reymann/webp-utils/pkg/config"
 	"github.com/timo-reymann/webp-utils/pkg/execute"
@@ -22,7 +21,6 @@ func init() {
 
 			// Build arg lines
 			commands, err := execute.BuildCommandsForFileList("cwebp", files, configuration)
-			fmt.Printf("%v\n", commands)
 			abort(cmd, "Error building cli for cwebp", err)
 
 			// Execute commands
