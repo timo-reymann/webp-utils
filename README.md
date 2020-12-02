@@ -15,7 +15,7 @@ Wrapper around [webp cli tools](https://developers.google.com/speed/webp/docs/us
 For easier development a json schema is used as base for validation and paramter passing.
 
 
-# Usage
+# Install
 
 ## Binary
 
@@ -41,3 +41,7 @@ If you want to use docker:
 ```bash
 docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp-utils cwebp --config /etc/webp-utils/default.json --file-glob *.png
 ```
+
+
+# Usage
+tbd
