@@ -23,11 +23,16 @@ jobs:
       - checkout
       - run:
           name: Run tests
-          command: gotestsum --junitfile unit-tests.xml
+          command: |
+            gotestsum --junitfile unit-tests.xml
+            make save-coverage-report
       - store_test_results:
           path: unit-tests.xml
       - store_artifacts:
           path: unit-tests.xml
+      - store_artifacts:
+          path: coverage.html
+
 
   github_release:
     executor: go

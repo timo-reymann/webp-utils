@@ -11,22 +11,27 @@ install-packr: ## Install packr tool
 bundle-schemas: ## Bundle schemas using packr
 	@packr --input pkg
 
-test-coverage-report: ## Run test and display coverage report in browser
+coverage: ## Run tests and measure coverage
 	@go test -covermode=count -coverprofile=/tmp/count.out -v ./...
+
+test-coverage-report: coverage ## Run test and display coverage report in browser
 	@go tool cover -html=/tmp/count.out
+
+save-coverage-report: coverage ## Save coverage report to coverage.html
+	@go tool cover -html=/tmp/count.out -o coverage.html
 
 create-dist: ## Create dist folder if not already existent
 	@mkdir -p dist/
 
-build-linux: ## Build for linux (amd64, arm64)
-	GOOS=linux GOARCH=amd64 go build -o dist/webp-utils-linux-amd64 $(BUILD_ARGS)
+build-linux: create-dist ## Build for linux (amd64, arm64)
+	@GOOS=linux GOARCH=amd64 go build -o dist/webp-utils-linux-amd64 $(BUILD_ARGS)
 	@GOOS=linux GOARCH=arm64 go build -o dist/webp-utils-linux-arm64 $(BUILD_ARGS)
 
-build-windows: ## Build for windows (amd64)
+build-windows: create-dist ## Build for windows (amd64)
 	@GOOS=windows GOARCH=amd64 go build -o dist/webp-utils-windows-amd64.exe $(BUILD_ARGS)
 
-build-darwin: ## Build for macOS (amd64, arm64)
+build-darwin: create-dist  ## Build for macOS (amd64, arm64)
 	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-amd64 $(BUILD_ARGS)
 	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-arm64 $(BUILD_ARGS)
 
-build: create-dist build-linux build-darwin build-windows ## Build for all platform
+build: build-linux build-darwin build-windows ## Build for all platform
