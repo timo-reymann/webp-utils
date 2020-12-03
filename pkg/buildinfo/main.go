@@ -1,7 +1,9 @@
 package buildinfo
 
+import "time"
+
 // GitSha of the build
-var GitSha string
+var GitSha = "HEAD"
 
 // Version contains the latest version tag
-var Version string
+var Version = time.Now().String()
