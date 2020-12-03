@@ -2,7 +2,7 @@ FROM golang:1.15-buster as builder
 COPY . /build/
 WORKDIR /build
 RUN go get -u github.com/gobuffalo/packr/packr && \
-    packr
+    packr --input pkg
 RUN go build -o webp-utils .
 
 FROM busybox as webp_downloader

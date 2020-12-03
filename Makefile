@@ -9,7 +9,7 @@ install-packr: ## Install packr tool
 	@go get -u github.com/gobuffalo/packr/packr
 
 bundle-schemas: ## Bundle schemas using packr
-	@packr
+	@packr --input pkg
 
 test-coverage-report: ## Run test and display coverage report in browser
 	@go test -covermode=count -coverprofile=/tmp/count.out -v ./...
