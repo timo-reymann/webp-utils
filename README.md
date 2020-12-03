@@ -50,6 +50,8 @@ docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp
 
 ## Configuration file
 Each json key value pair represents an argument and its value, that can be templated using go templates.
+You can also use the template functions from [sprig](https://github.com/Masterminds/sprig) as documented 
+[here](http://masterminds.github.io/sprig/).
 
 You can use any other key or the following builtins:
 
@@ -60,3 +62,6 @@ You can use any other key or the following builtins:
 
 You can find all schemas inside [pkg/schema](./pkg/schema), you can also set up your ide/editor to give you
 autocomplete based on the json schema.
+
+## Examples
+Examples of the usage can be found under examples.

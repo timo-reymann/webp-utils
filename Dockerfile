@@ -18,7 +18,7 @@ WORKDIR  /etc/webp-utils
 COPY .docker/default_configuration.json default.json
 
 COPY --from=builder /build/webp-utils /usr/local/bin/webp-utils
-COPY --from=webp_downloader /download/bin/cwebp /usr/local/bin/cwebp
+COPY --from=webp_downloader /download/bin/* /usr/local/bin/
 
 WORKDIR /workspace
 ENTRYPOINT ["/usr/local/bin/webp-utils"]

@@ -1,5 +1,5 @@
 {
-  "o": "{{ .source_file_name }}.webp",
+  "o": "{{ .source_file_name }}-{{ uuidv4 }}.webp",
   "metadata": "none",
   "q": 80,
   "mt": true,

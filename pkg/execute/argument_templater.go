@@ -2,10 +2,11 @@ package execute
 
 import (
 	"bytes"
+	"github.com/Masterminds/sprig"
 	"text/template"
 )
 
-var argTemplate = template.New("")
+var argTemplate = template.New("").Funcs(sprig.TxtFuncMap())
 
 // ArgumentTemplater contains all information necessary to make a argument templateable
 type ArgumentTemplater struct {
