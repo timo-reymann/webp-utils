@@ -7,7 +7,7 @@ import (
 )
 
 // Load reads the file and validates it against the schema
-func Load(path string) (map[string]interface{}, error) {
+func Load(path string, schema string) (map[string]interface{}, error) {
 	// Parse configuration
 	content, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -15,7 +15,7 @@ func Load(path string) (map[string]interface{}, error) {
 	}
 
 	// Validate configuration
-	errs := json.Validate(content, "cwebp")
+	errs := json.Validate(content, schema)
 	for _, err := range errs {
 		return nil, errors.New(err)
 	}

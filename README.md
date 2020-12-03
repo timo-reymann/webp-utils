@@ -8,6 +8,7 @@ Wrapper around [webp cli tools](https://developers.google.com/speed/webp/docs/us
 
 # Currently supported webp cli tools:
 - cwebp
+- gif2webp
 
 # Technical notes
 For easier development a json schema is used as base for validation and paramter passing.
@@ -21,7 +22,7 @@ To use the tools with a binary you will also need to install the webp cli tools 
 
 Just make sure they are placed inside your PATH or add them accordingly.
 
-More information about installation can be found on [developers.google.com](https://developers.google.com/speed/webp/docs/using). 
+More information about installation can be found on [developers.google.com](https://developers.google.com/speed/webp/docs/precompiled). 
 
 ### Get binary using go cli
 If you already have go setup you can simply run a `go get`:
@@ -34,6 +35,7 @@ Navigate to the [latest release](https://github.com/timo-reymann/webp-utils/rele
 ## Docker
 If you want to use docker:
 
+e. g. for cwebp
 ```bash
 docker run --user $(id -u):$(id -g) -v $PWD:/workspace --rm -it timoreymann/webp-utils \
     cwebp --config /etc/webp-utils/default.json --file-glob '*.png'
