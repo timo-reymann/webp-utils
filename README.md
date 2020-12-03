@@ -64,4 +64,4 @@ You can find all schemas inside [pkg/schema](./pkg/schema), you can also set up 
 autocomplete based on the json schema.
 
 ## Examples
-Examples of the usage can be found under examples.
+Feel free to browse around at [examples](./examples)
