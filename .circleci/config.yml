@@ -101,6 +101,8 @@ workflows:
 
       - build_docker:
           <<: *job_defaults
+          requires:
+            - test
 
       - github_release:
           filters:
