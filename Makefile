@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-BUILD_ARGS=-ldflags "-X github.com/timo-reymann/webp-utils/pkg/buildinfo.GitSha=$(shell git rev-parse --short HEAD) -X github.com/timo-reymann/webp-utils/pkg/buildinfo.Version=$(shell git describe --abbrev=0)"
+BUILD_ARGS=-ldflags "-X github.com/timo-reymann/webp-utils/pkg/buildinfo.GitSha=$(shell git rev-parse --short HEAD) -X github.com/timo-reymann/webp-utils/pkg/buildinfo.Version=$(shell git describe --tags `git rev-list --tags --max-count=1`)"
 .PHONY: help
 
 help: ## Display this help page
@@ -40,5 +40,5 @@ build-docker-binary: install-packr bundle-schemas ## Build for/in docker contain
 build: install-packr bundle-schemas build-linux build-darwin build-windows ## Build binaries for all platform
 
 build-docker-local: ## Build local snapshot image
-	@docker build . -t webp-utils:snapshot
+	@docker build --no-cache  . -t webp-utils:snapshot
 
