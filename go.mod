@@ -17,4 +17,5 @@ require (
 	github.com/rogpeppe/go-internal v1.6.2 // indirect
 	github.com/spf13/cobra v1.1.1
 	github.com/stretchr/testify v1.5.1 // indirect
+	golang.org/x/crypto v0.0.0-20201203163018-be400aefbc4c // indirect
 )

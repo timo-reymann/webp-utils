@@ -6,7 +6,7 @@ help: ## Display this help page
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[33m%-30s\033[0m %s\n", $$1, $$2}'
 
 install-packr: ## Install packr tool
-	@go get -u github.com/gobuffalo/packr/packr
+	@cd /tmp && go get -u github.com/gobuffalo/packr/packr
 
 bundle-schemas: ## Bundle schemas using packr
 	@packr --input pkg
@@ -34,4 +34,4 @@ build-darwin: create-dist  ## Build for macOS (amd64, arm64)
 	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-amd64 $(BUILD_ARGS)
 	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-arm64 $(BUILD_ARGS)
 
-build: build-linux build-darwin build-windows ## Build for all platform
+build: install-packr bundle-schemas build-linux build-darwin build-windows ## Build for all platform
