@@ -1,7 +1,7 @@
 FROM circleci/golang:1.15 as builder
 USER root
-COPY . /build/
 WORKDIR /build
+COPY . .
 RUN make build-docker-binary
 
 
@@ -15,7 +15,7 @@ RUN wget  -qO- https://storage.googleapis.com/downloads.webmproject.org/releases
 
 FROM ubuntu:20.10
 WORKDIR  /etc/webp-utils
-COPY .docker/default_configuration.json default.json
+COPY .docker/configurations/* .
 
 COPY --from=builder /build/webp-utils /usr/local/bin/webp-utils
 COPY --from=webp_downloader /download/bin/* /usr/local/bin/

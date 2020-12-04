@@ -1,6 +1,9 @@
-SHELL := /bin/bash
-BUILD_ARGS=-ldflags "-X github.com/timo-reymann/webp-utils/pkg/buildinfo.GitSha=$(shell git rev-parse --short HEAD) -X github.com/timo-reymann/webp-utils/pkg/buildinfo.Version=$(shell git describe --tags `git rev-list --tags --max-count=1`)"
 .PHONY: help
+
+SHELL := /bin/bash
+
+NOW=$(shell date +'%y-%m-%d_%H:%M:%S')
+BUILD_ARGS=-ldflags "-X github.com/timo-reymann/webp-utils/pkg/buildinfo.GitSha=$(shell git rev-parse --short HEAD) -X github.com/timo-reymann/webp-utils/pkg/buildinfo.Version=$(shell git describe --tags `git rev-list --tags --max-count=1`) -X github.com/timo-reymann/webp-utils/pkg/buildinfo.BuildTime=$(NOW)"
 
 help: ## Display this help page
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[33m%-30s\033[0m %s\n", $$1, $$2}'
@@ -35,10 +38,9 @@ build-darwin: create-dist  ## Build binaries for macOS (amd64, arm64)
 	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-arm64 $(BUILD_ARGS)
 
 build-docker-binary: install-packr bundle-schemas ## Build for/in docker container
-	@go build -o webp-utils $(BUILD_ARGS)
+	go build -o webp-utils $(BUILD_ARGS)
 
 build: install-packr bundle-schemas build-linux build-darwin build-windows ## Build binaries for all platform
 
 build-docker-local: ## Build local snapshot image
 	@docker build --no-cache  . -t webp-utils:snapshot
-
