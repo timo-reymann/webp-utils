@@ -23,15 +23,22 @@ save-coverage-report: coverage ## Save coverage report to coverage.html
 create-dist: ## Create dist folder if not already existent
 	@mkdir -p dist/
 
-build-linux: create-dist ## Build for linux (amd64, arm64)
+build-linux: create-dist ## Build binaries for linux (amd64, arm64)
 	@GOOS=linux GOARCH=amd64 go build -o dist/webp-utils-linux-amd64 $(BUILD_ARGS)
 	@GOOS=linux GOARCH=arm64 go build -o dist/webp-utils-linux-arm64 $(BUILD_ARGS)
 
-build-windows: create-dist ## Build for windows (amd64)
+build-windows: create-dist ## Build binaries for windows (amd64)
 	@GOOS=windows GOARCH=amd64 go build -o dist/webp-utils-windows-amd64.exe $(BUILD_ARGS)
 
-build-darwin: create-dist  ## Build for macOS (amd64, arm64)
+build-darwin: create-dist  ## Build binaries for macOS (amd64, arm64)
 	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-amd64 $(BUILD_ARGS)
 	@GOOS=darwin GOARCH=amd64 go build -o dist/webp-utils-darwin-arm64 $(BUILD_ARGS)
 
-build: install-packr bundle-schemas build-linux build-darwin build-windows ## Build for all platform
+build-docker-binary: install-packr bundle-schemas ## Build for/in docker container
+	@go build -o webp-utils $(BUILD_ARGS)
+
+build: install-packr bundle-schemas build-linux build-darwin build-windows ## Build binaries for all platform
+
+build-docker-local: ## Build local snapshot image
+	@docker build . -t webp-utils:snapshot
+

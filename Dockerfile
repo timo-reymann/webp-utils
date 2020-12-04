@@ -1,10 +1,8 @@
-FROM golang:1.15-buster as builder
-RUN go get -u github.com/gobuffalo/packr/packr && \
-    packr --input pkg
-
+FROM circleci/golang:1.15 as builder
+USER root
 COPY . /build/
 WORKDIR /build
-RUN go build -o webp-utils .
+RUN make build-docker-binary
 
 
 FROM busybox as webp_downloader
