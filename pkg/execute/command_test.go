@@ -43,8 +43,8 @@ func TestCommand_RunWithCombinedOutput(t *testing.T) {
 		ArgTemplater: templater,
 	}
 
-	_, err := cmd.RunWithCombinedOutput()
-	if err != nil {
+	res, err := cmd.RunWithCombinedOutput()
+	if err != nil && res != "" {
 		t.Errorf("Expected no error, but got %v", err)
 	}
 }
