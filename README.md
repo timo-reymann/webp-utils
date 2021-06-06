@@ -3,6 +3,7 @@ webp-utils
 [![GitHub Release](https://img.shields.io/github/v/release/timo-reymann/webp-utils.svg?label=version)](https://github.com/timo-reymann/webp-utils/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/timo-reymann/webp-utils)](https://goreportcard.com/report/github.com/timo-reymann/webp-utils)
 [![CircleCI Build Status](https://circleci.com/gh/timo-reymann/webp-utils.svg?style=shield)](https://app.circleci.com/pipelines/github/timo-reymann/webp-utils)
+[![codecov](https://codecov.io/gh/timo-reymann/webp-utils/branch/main/graph/badge.svg?token=OV4RC1ZQ7D)](https://codecov.io/gh/timo-reymann/webp-utils)
 
 Wrapper around [webp cli tools](https://developers.google.com/speed/webp/docs/using) to allow easier batch processing. 
 
