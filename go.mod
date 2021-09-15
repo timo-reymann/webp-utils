@@ -13,7 +13,7 @@ require (
 	github.com/huandu/xstrings v1.3.2 // indirect
 	github.com/imdario/mergo v0.3.11 // indirect
 	github.com/mitchellh/copystructure v1.0.0 // indirect
-	github.com/qri-io/jsonschema v0.2.0
+	github.com/qri-io/jsonschema v0.2.1
 	github.com/rogpeppe/go-internal v1.6.2 // indirect
 	github.com/spf13/cobra v1.1.1
 	github.com/stretchr/testify v1.5.1 // indirect
