@@ -14,6 +14,5 @@ require (
 	github.com/mitchellh/copystructure v1.0.0 // indirect
 	github.com/qri-io/jsonschema v0.2.1
 	github.com/rogpeppe/go-internal v1.6.2 // indirect
-	github.com/spf13/cobra v1.2.1
-	golang.org/x/crypto v0.0.0-20201203163018-be400aefbc4c // indirect
+	github.com/spf13/cobra v1.3.0
 )
