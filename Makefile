@@ -9,7 +9,7 @@ help: ## Display this help page
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[33m%-30s\033[0m %s\n", $$1, $$2}'
 
 install-packr: ## Install packr tool
-	@cd /tmp && go install github.com/gobuffalo/packr/packr@v2.8.3
+	@cd /tmp && go install github.com/gobuffalo/packr/packr@latest
 
 bundle-schemas: ## Bundle schemas using packr
 	@packr --input pkg
