@@ -11,7 +11,7 @@ orbs:
 executors:
   go:
     docker:
-      - image: circleci/golang:1.15
+      - image: circleci/golang:1.17
   docker:
     docker:
       - image: docker:19-git

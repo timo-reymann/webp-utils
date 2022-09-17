@@ -1,4 +1,4 @@
-FROM circleci/golang:1.15 as builder
+FROM circleci/golang:1.17 as builder
 USER root
 WORKDIR /build
 COPY . .
