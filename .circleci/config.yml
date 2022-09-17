@@ -14,7 +14,7 @@ executors:
       - image: circleci/golang:1.17
   docker:
     docker:
-      - image: docker:19-git
+      - image: docker:20-git
 
 
 jobs:
