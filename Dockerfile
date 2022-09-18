@@ -13,7 +13,7 @@ RUN wget  -qO- https://storage.googleapis.com/downloads.webmproject.org/releases
     ls -la
 
 
-FROM ubuntu:20.10
+FROM ubuntu:22.04
 WORKDIR  /etc/webp-utils
 COPY .docker/configurations/* .
 
